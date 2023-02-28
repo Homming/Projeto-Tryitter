@@ -1,0 +1,94 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: sans-serif;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: flex-start;
+  width: 350px;
+  padding: 20px;
+  background-color: var(--accent-color);
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--background-color);
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profile-info h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+.profile-info p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.profile-content {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-right: 20px;
+}
+
+.topics-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.topics-list li {
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.topics-list li:hover {
+  background-color: var(--hover-color);
+}
+
+.topics-list li.active {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+}
+
+.profile-posts {
+  flex: 1;
+  display: grid;
+  gap: 20px;
+  margin: 0;
+  padding: 20px;
+  border: solid 2px rgb(0, 153, 115);
+  border-radius: 10px;
+}
