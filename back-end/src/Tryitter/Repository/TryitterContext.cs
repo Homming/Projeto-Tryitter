@@ -8,6 +8,9 @@ public class TryitterContext : DbContext
     private readonly string _user;
     private readonly string _pass;
 
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Post> Posts { get; set; } 
+
     public TryitterContext(DbContextOptions<TryitterContext> options) : base(options){ }
 
     public TryitterContext() {
@@ -22,6 +25,12 @@ public class TryitterContext : DbContext
         
         if (!optionsBuilder.IsConfigured)
             optionsBuilder.UseSqlServer($"Server={_server};Database={_dbName};User={_user};Password={_pass};");
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Post>().HasOne(p => p.Student)
+            .WithMany(s => s.Posts).HasForeignKey(p => p.StudentId);
     }
 
 }
