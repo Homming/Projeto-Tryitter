@@ -1,0 +1,213 @@
+.homePage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  border: solid 0.5px rgb(0, 153, 115);
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px black;
+}
+
+/* .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+} */
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.search {
+  width: 100%;
+  max-width: 600px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.timeline {
+  width: 60%;
+}
+
+.postForm {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tweetButton {
+  background-color: rgb(0, 153, 115);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.post {
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.postContent {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.username {
+  font-size: 16px;
+  color: #777;
+  margin-left: 5px;
+}
+
+.timestamp {
+  font-size: 16px;
+  color: #777;
+}
+
+.message {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.postFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+}
+
+.actionButton {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: #777;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.likes {
+  font-size: 16px;
+  color: #777;
+}
+
+.sidebar {
+  width: 35%;
+  margin-left: 20px;
+}
+
+.whoToFollow {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.users {
+  display: flex;
+  flex-direction: column;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user img.avatar {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user .userInfo {
+  flex-grow: 1;
+}
+
+.user .userInfo .name {
+  font-weight: bold;
+}
+
+.user .userInfo .username {
+  color: var(--twitter-gray);
+}
+
+.followButton {
+  background-color: var(--twitter-blue);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.followButton:hover {
+  background-color: var(--twitter-blue-hover);
+}
