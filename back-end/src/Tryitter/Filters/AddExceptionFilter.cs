@@ -12,15 +12,11 @@ public class ExceptionFilter : IExceptionFilter
         }
 
         int statusCode = (int)HttpStatusCode.InternalServerError;
-        if (context.Exception is ArgumentNullException)
+        if (context.Exception is StudentNotFound)
         {
-            statusCode = (int)HttpStatusCode.BadRequest;
+            statusCode = (int)HttpStatusCode.NotFound;
         }
-        else if (context.Exception is InvalidOperationException)
-        {
-            statusCode = (int)HttpStatusCode.Conflict;
-        }
-
+        
         var response = new
         {
             Error = context.Exception.Message,

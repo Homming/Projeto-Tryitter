@@ -7,7 +7,7 @@ namespace Tryitter.Controllers;
 public class LoginController : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult<string>> Login([FromBody] Student student)
+    public async Task<ActionResult<string>> Login([FromBody] LoginRequest student)
     {
         
     }
