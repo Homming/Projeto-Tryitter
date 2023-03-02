@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Navigate } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
+import Modal from '../../components/Modal/Modal';
 import './login.css';
 
 
@@ -10,6 +11,7 @@ const [password, setPassword] = useState('');
 const [errorMessage, setErrorMessage] = useState('');
 const [isLogged, setIsLogged] = useState(false);
 const [failedTryLogin, setFailedTryLogin] = useState(false);
+
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -38,7 +40,7 @@ const [failedTryLogin, setFailedTryLogin] = useState(false);
       <div className="login-form-container">
         <div className="login-heading">
           <h1>Seja Bem-Vindo ao Tryitter</h1>
-          <Logo/>
+          <Logo />
         </div>
         <form className="login-form" onSubmit={handleLogin}>
           <div className="form-field">
@@ -85,6 +87,9 @@ const [failedTryLogin, setFailedTryLogin] = useState(false);
             >
             Entrar
             </button>
+            
+            <Modal />
+            
             <Link to="/" className="forgot-password-link">
             Esqueceu a senha?
             </Link>
