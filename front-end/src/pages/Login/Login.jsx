@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import Modal from '../../components/Modal/Modal';
 import './login.css';
+import { userList } from "../../helpers/userList";
+import FormErrorMessage from '../../components/error/ErrorMessage';
+import Swal from "sweetalert2";
 
 
 const Login = () => {
@@ -11,19 +14,63 @@ const [password, setPassword] = useState('');
 const [errorMessage, setErrorMessage] = useState('');
 const [isLogged, setIsLogged] = useState(false);
 const [failedTryLogin, setFailedTryLogin] = useState(false);
+const [formValidation, setFormValidation] = useState({});
+	let validationMessages = {};
+
+	function emailValidate() {
+		let result = false;
+
+		if (email === "") {
+			validationMessages.email = "Campo Obrigatório!";
+		} else if (userList.find((user) => user.email === email)) {
+			validationMessages.email = "";
+			result = true;
+		} else {
+			validationMessages.email = "Email não encontrado!";
+		}
+		return result;
+	}
+
+	function passwordValidate() {
+		let result = false;
+
+		if (password === "") {
+			validationMessages.password = "Campo Obrigatório!";
+		} else if (
+			userList.find(
+				(user) => user.password === password && user.email === email
+			)
+		) {
+			validationMessages.password = "";
+			result = true;
+		} else {
+			validationMessages.password = "Senha incorreta!";
+		}
+		return result;
+	}
 
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  function handleLogin() {
+  
+      const validLogin = emailValidate();
+		  const validPassword = passwordValidate();
 
-    try {
-      const endpoint = '/login';
+		  setFormValidation(validationMessages);
 
-      // const { token, user } = await requestLogin(endpoint, { email, password });
+		  if (validPassword && validLogin) {
+			  Swal.fire({
+				  icon: "success",
+				  title: "Bem Vindo ao Tryitter",
+				  showConfirmButton: false,
+				  timer: 1500,
+			  });
 
-      // localStorage.setItem('user', JSON.stringify({ token, ...user }));
-      setIsLogged(true);
-    } catch (error) {
+			setTimeout(() => {
+				window.location.href = "/home";
+        setIsLogged(true);
+			}, 1500);
+		}
+    else {
       setFailedTryLogin(true);
       setIsLogged(false);
     }
@@ -42,7 +89,8 @@ const [failedTryLogin, setFailedTryLogin] = useState(false);
           <h1>Seja Bem-Vindo ao Tryitter</h1>
           <Logo />
         </div>
-        <form className="login-form" onSubmit={handleLogin}>
+        {/* <form className="login-form" onSubmit={handleLogin}> */}
+        <form className="login-form">
           <div className="form-field">
             <label htmlFor="email-address">Endereço de email</label>
               <input
@@ -55,6 +103,10 @@ const [failedTryLogin, setFailedTryLogin] = useState(false);
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="Endereço de email"
               />
+              <FormErrorMessage
+						    errors={formValidation}
+						    fieldName="email"
+					    />
           </div>
           <div className="form-field">
             <label htmlFor="password">Senha</label>
@@ -68,6 +120,10 @@ const [failedTryLogin, setFailedTryLogin] = useState(false);
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="Senha"
               />
+              <FormErrorMessage
+						    errors={formValidation}
+						    fieldName="password"
+					    />
           </div>
           <div className="form-field">
             <input
@@ -82,8 +138,9 @@ const [failedTryLogin, setFailedTryLogin] = useState(false);
           </div>
           <div className="form-field form-submit">
             <button
-              type="submit"
+              type="button"
               className="login-button"
+              onClick={() => { handleLogin() }}
             >
             Entrar
             </button>
