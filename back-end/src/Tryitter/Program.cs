@@ -34,9 +34,32 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddControllers(options => {
+builder.Services.AddControllers(options =>
+{
     options.Filters.Add<ExceptionFilter>();
 });
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("EditProfile", policy =>
+        policy.RequireAssertion(context =>
+        {
+            var student = context.User.FindFirst("StudentId");
+            if (student == null)
+            {
+                return false;
+            }
+            int.TryParse(student.Value, out int studentId);
+
+            var httpContext = context.Resource as HttpContext;
+            var routeData = httpContext!.GetRouteData();
+            var currentId = routeData.Values["id"] as int?;
+            return currentId.HasValue && studentId == currentId;
+        }));
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
