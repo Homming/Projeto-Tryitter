@@ -84,8 +84,15 @@ function Profile () {
             <p className="no-posts">Nenhum post encontrado</p>
           )}
           {filteredPosts.map(post => (
-            <div className="post" key={post.id}>
-              <p className="post-content">{post.content}</p>
+            <div className="container-post" key={post.id}>
+              <div className="content-post">
+                <p className="post-text">{post.content}</p>
+                <img alt="" src="" className='post-image'></img>
+              </div>
+              <div className="container-post-button">
+                <button className="post-button">Editar</button>
+                <button className="post-button">Excluir</button>
+              </div>
             </div>
           ))}
         </div>
