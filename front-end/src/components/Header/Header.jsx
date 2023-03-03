@@ -2,12 +2,19 @@ import React from "react";
 import { redirect } from "react-router-dom";
 import "./header.css"
 import Logo from "../Logo/Logo";
+import { useNavigate } from "react-router-dom";
 
 function Header({ userName, isLoggedIn }) {
+  const navigate = useNavigate();
 
   function redirectPerfilPage() {
-    redirect('/perfil');
+    navigate('/profile');
   }
+
+  function handleLogin() {
+    navigate('/login');
+  }
+
 
   return (
     <header className="tryitter-header">
@@ -25,7 +32,7 @@ function Header({ userName, isLoggedIn }) {
             <button className="login-logout-button">Sair</button>
           </>
         ) : (
-          <button className="login-logout-button">Entrar</button>
+          <button className="login-logout-button" onClick={() => handleLogin()}>Entrar</button>
         )}
       </div>
     </header>
