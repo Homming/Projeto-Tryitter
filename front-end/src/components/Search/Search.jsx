@@ -3,12 +3,13 @@ import './search.css';
 
 const Search = () => {
   const [query, setQuery] = useState('');
-  const [selectedTopic, setSelectedTopic] = useState('all');
+  const [selectedTopic, setSelectedTopic] = useState(1);
   const topics = [
     { id: 1, label: 'Todos os tópicos' },
-    { id: 2, label: 'Frontend' },
-    { id: 3, label: 'Backend' },
-    { id: 4, label: 'Ciência da Computação' },
+    { id: 2, label: 'Fundamentos' },
+    { id: 3, label: 'Frontend' },
+    { id: 4, label: 'Backend' },
+    { id: 5, label: 'Ciência da Computação' },
   ];
 
   const handleQueryChange = event => {

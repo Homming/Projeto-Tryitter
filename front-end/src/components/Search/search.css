@@ -8,8 +8,9 @@
 }
 .search-input {
   display: flex;
-  margin-right: 20px;
-  width: 700px;
+  margin-right: 10px;
+  width: 550px;
+  margin-top: 20px;
 }
 
 .search-input input {
