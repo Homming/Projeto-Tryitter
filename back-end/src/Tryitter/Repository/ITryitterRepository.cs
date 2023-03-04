@@ -8,6 +8,6 @@ public interface ITryitterRepository<T> where T : class
     Task Add<T>(T entity) where T : class;
     Task Update<T>(T entity) where T : class;
     Task Delete<T>(T entity) where T : class;
-    Task<string>? GetByNameOrEmail(string value);
+    Task<Student>? GetByNameOrEmail(string value);
 
 }

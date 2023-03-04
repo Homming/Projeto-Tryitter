@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 
 public class TryitterRepository<T> : ITryitterRepository<T> where T : class {
-    protected readonly DbContext _context;
-    public TryitterRepository(DbContext context)
+    protected readonly TryitterContext _context;
+    public TryitterRepository(TryitterContext context)
     {
         _context = context;
     }
@@ -36,9 +36,9 @@ public class TryitterRepository<T> : ITryitterRepository<T> where T : class {
         return await _context.Set<T>().ToListAsync();
     }
 
-    public virtual async Task<string?> GetByNameOrEmail(string value)
+    public virtual async Task<Student?> GetByNameOrEmail(string value)
     {
-        return await _context.Set<string>().FindAsync(value);
+        return await _context.Set<Student>().FirstOrDefaultAsync(s => s.Email == value || s.StudentName == value);
     }
 
 }
