@@ -13,9 +13,9 @@ public class ExceptionFilter : IExceptionFilter
 
         int statusCode = (int)HttpStatusCode.InternalServerError;
         if (context.Exception is StudentNotFound)
-        {
             statusCode = (int)HttpStatusCode.NotFound;
-        }
+        else if (context.Exception is IncorrectPassword)
+            statusCode = (int)HttpStatusCode.BadRequest;
         
         var response = new
         {
