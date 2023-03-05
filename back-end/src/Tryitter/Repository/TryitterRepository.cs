@@ -2,39 +2,43 @@
 using Microsoft.EntityFrameworkCore;
 
 public class TryitterRepository<T> : ITryitterRepository<T> where T : class {
-    protected readonly DbContext _context;
-    public TryitterRepository(DbContext context)
+    protected readonly TryitterContext _context;
+    public TryitterRepository(TryitterContext context)
     {
         _context = context;
     }
 
-    public virtual void Add<T>(T entity) where T : class
+    public virtual async Task Add<T>(T entity) where T : class
     {
         _context.Add(entity);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public virtual void Delete<T>(T entity) where T : class
+    public virtual async Task Delete<T>(T entity) where T : class
     {
         _context.Remove(entity);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public virtual void Update<T>(T entity) where T : class
+    public virtual async Task Update<T>(T entity) where T : class
     {
         _context.Update(entity);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public virtual T? GetById<T>(int id) where T : class
+    public virtual async Task<T?> GetById<T>(int id) where T : class
     {
-        return _context.Set<T>().Find(id);
+        return await _context.Set<T>().FindAsync(id);
     }
 
-    public virtual IEnumerable<T> GetAll<T>() where T : class
+    public virtual async Task<IEnumerable<T>> GetAll<T>() where T : class
     {
-        return _context.Set<T>().ToList();
+        return await _context.Set<T>().ToListAsync();
     }
 
+    public virtual async Task<Student?> GetByNameOrEmail(string value)
+    {
+        return await _context.Set<Student>().FirstOrDefaultAsync(s => s.Email == value || s.StudentName == value);
+    }
 
 }
