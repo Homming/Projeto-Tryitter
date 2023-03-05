@@ -16,6 +16,8 @@ public class ExceptionFilter : IExceptionFilter
             statusCode = (int)HttpStatusCode.NotFound;
         else if (context.Exception is IncorrectPassword)
             statusCode = (int)HttpStatusCode.BadRequest;
+        else if (context.Exception is NoContent)
+            statusCode = (int)HttpStatusCode.NoContent;
         
         var response = new
         {
