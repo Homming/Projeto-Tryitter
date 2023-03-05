@@ -51,15 +51,15 @@ builder.Services.AddAuthorization(options =>
             var student = context.User.FindFirst("StudentId");
             if (student == null)
             {
-                return false;
+                throw new ArgumentException("Student é nulo");
             }
             int.TryParse(student.Value, out int studentId);
 
             var httpContext = context.Resource as HttpContext;
             var routeData = httpContext!.GetRouteData();
-            var currentId = routeData.Values["id"] as int?;
-            return currentId.HasValue && studentId == currentId;
-        }));
+            int.TryParse(routeData.Values["id"].ToString(), out int currentId);
+            return studentId == currentId;
+        }));   
 });
 
 var app = builder.Build();
