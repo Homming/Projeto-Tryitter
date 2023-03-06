@@ -1,10 +1,13 @@
+import  student1  from "../student1.png"
+import student2 from "../student2.png"
+
 const mockData = [
   {
     id: 1,
-    name: 'John Doe',
-    username: 'johndoe',
-    avatar: 'https://placeimg.com/64/64/people/1',
-    message: 'Hello Projeto!',
+    name: 'Matheus',
+    username: 'matheusluiz',
+    avatar: student1,
+    message: 'Muito feliz pela oportunidade de ralizar esta aceleração em c# #Voalle!',
     timestamp: 1645423429297,
     likes: 3,
     comments: [
@@ -20,10 +23,10 @@ const mockData = [
   },
   {
     id: 2,
-    name: 'Jane Doe',
-    username: 'janedoe',
-    avatar: 'https://placeimg.com/64/64/people/2',
-    message: 'How is everyone doing today?',
+    name: 'Nicholas',
+    username: 'nicholastorres',
+    avatar: student2,
+    message: 'Muito feliz pela oportunidade de ralizar esta aceleração em c# #Voalle!',
     timestamp: 1645419999123,
     likes: 5,
     comments: [],

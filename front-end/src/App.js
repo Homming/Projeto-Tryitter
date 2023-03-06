@@ -10,6 +10,7 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Routes>
+      <Route exact path="/" element={ <Login /> } />
       <Route exact path="/login" element={ <Login /> } />
       <Route exact path="/home" element={ <HomePage /> } />
       <Route exact path="/profile" element={ <Profile /> } />

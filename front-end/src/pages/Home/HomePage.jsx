@@ -7,6 +7,22 @@ import Search from '../../components/Search/Search';
 const HomePage = () => {
   const [posts, setPosts] = useState(mockData);
   const [newPost, setNewPost] = useState('');
+  const [selectedOption, setSelectedOption] = useState("Fundamentos");
+
+  function handleChange(event) {
+    const value = event.target.value;
+    setSelectedOption(value);
+  }
+
+  const options = ['Fundamentos', 'Front-End', 'Back-End', 'Ciências da Computação'];
+
+  const optionElements = options.map((option, index) => (
+    <option key={index} value={option}>
+      {option}
+    </option>
+  ));
+
+  
 
   const handleNewPostChange = (event) => {
     setNewPost(event.target.value);
@@ -24,6 +40,7 @@ const HomePage = () => {
       timestamp: new Date().getTime(),
       likes: 0,
       comments: [],
+      module: selectedOption,
     };
     setPosts([newPostData, ...posts]);
     setNewPost('');
@@ -51,6 +68,11 @@ const HomePage = () => {
                 maxLength={280}
                 required
               ></textarea>
+              <select value={selectedOption} onChange={handleChange}>
+                <option value="">Selecione uma opção</option>
+                  {optionElements}
+              </select>
+
               <div className="formActions">
                 <button type="submit" className="tweetButton">
                   Tryit
@@ -65,6 +87,7 @@ const HomePage = () => {
                 <div className="postHeader">
                   <div className="name">{post.name}</div>
                   <div className="username">@{post.username}</div>
+                  <p>{post.module}</p>
                   <div className="timestamp">
                     {new Date(post.timestamp).toLocaleString()}
                   </div>
