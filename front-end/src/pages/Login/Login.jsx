@@ -15,6 +15,7 @@ const [errorMessage, setErrorMessage] = useState('');
 const [isLogged, setIsLogged] = useState(false);
 const [failedTryLogin, setFailedTryLogin] = useState(false);
 const [formValidation, setFormValidation] = useState({});
+const [localStorageData, setUserLocalStorage] = useState([]);
 	let validationMessages = {};
 
 	function emailValidate() {
@@ -25,7 +26,14 @@ const [formValidation, setFormValidation] = useState({});
 		} else if (userList.find((user) => user.email === email)) {
 			validationMessages.email = "";
 			result = true;
-		} else {
+		} else if (
+      localStorageData.find(
+        (user) => user.email === email
+      )
+    ) {
+      validationMessages.email = "";
+      result = true;
+    } else {
 			validationMessages.email = "Email não encontrado!";
 		}
 		return result;
@@ -43,7 +51,14 @@ const [formValidation, setFormValidation] = useState({});
 		) {
 			validationMessages.password = "";
 			result = true;
-		} else {
+		} else if (
+      localStorageData.find(
+        (user) => user.password === password
+      )
+    ) {
+      validationMessages.password = "";
+      result = true;
+    } else {
 			validationMessages.password = "Senha incorreta!";
 		}
 		return result;
@@ -78,6 +93,9 @@ const [formValidation, setFormValidation] = useState({});
 
   useEffect(() => {
     setFailedTryLogin(false);
+
+    let userLocalStorage = JSON.parse(localStorage.getItem("formData"));
+    setUserLocalStorage(userLocalStorage);
   }, [email, password]);
 
   if (isLogged) return <Navigate to="/home" />;
