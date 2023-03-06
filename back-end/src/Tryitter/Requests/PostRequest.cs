@@ -1,15 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-public class Post
+public class PostRequest
 {
-    [Key]
-    public int PostId { get; set; }
+    [MinLength(1)]
     public string Content { get; set; } = default!;
     public byte[]? ImageData { get; set; }
     public string? ImageMime { get; set; }
-    public int StudentId { get; set; }
-    [ForeignKey("StudentId")]
     public Student Student { get; set; }
-
 }

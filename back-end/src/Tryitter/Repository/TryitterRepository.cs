@@ -36,6 +36,11 @@ public class TryitterRepository<T> : ITryitterRepository<T> where T : class {
         return await _context.Set<T>().ToListAsync();
     }
 
+    public virtual async Task<IEnumerable<Post>> GetAllById(int id)
+    {
+        return await _context.Set<Post>().Include(p => p.Student).Where(p => p.StudentId == id).ToListAsync();
+    }
+
     public virtual async Task<Student?> GetByNameOrEmail(string value)
     {
         return await _context.Set<Student>().FirstOrDefaultAsync(s => s.Email == value || s.StudentName == value);
