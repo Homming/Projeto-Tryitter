@@ -2,10 +2,10 @@
 
 public class StudentService {
     private readonly ITryitterRepository<Student> _repository;
-    private readonly ILogger<LoginService> _logger;
+    private readonly ILogger<StudentService> _logger;
 
     public StudentService(ITryitterRepository<Student> repository,
-        ILogger<LoginService> logger)
+        ILogger<StudentService> logger)
     {
         _repository = repository;
         _logger = logger;
@@ -22,6 +22,8 @@ public class StudentService {
         };
 
         await _repository.Add(student);
+
+        student.Password = String.Empty;
 
         return student;
     }

@@ -14,6 +14,7 @@ builder.Services.AddDbContext<TryitterContext>();
 builder.Services.AddScoped(typeof(ITryitterRepository<>), typeof(TryitterRepository<>));
 builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<StudentService>();
+builder.Services.AddScoped<PostService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

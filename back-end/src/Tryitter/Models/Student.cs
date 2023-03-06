@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Student 
 {
@@ -9,6 +10,7 @@ public class Student
     public Modules CurrentModule { get; set; }
     public string Status { get; set; }
     public string Password { get; set; }
+    [InverseProperty("Student")]
     public virtual ICollection<Post>? Posts { get; set; }
 
 }
